@@ -28,7 +28,6 @@ kotlin {
                 api(compose.ui)
                 api(compose.foundation)
                 api(compose.material3)
-                api(compose.materialIconsExtended)
             }
         }
         val jvmTest by getting
