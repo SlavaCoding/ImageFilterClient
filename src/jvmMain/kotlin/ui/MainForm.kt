@@ -1,52 +1,87 @@
 package ui
 
-import androidx.compose.runtime.Composable
+import ViewModel
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
-
-import androidx.compose.ui.res.loadImageBitmap
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Surface
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.painter.BitmapPainter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import ui.theme.AppTheme
+import com.darkrockstudios.libraries.mpfilepicker.FilePicker
+import enums.Page
 import java.io.File
 
 @Composable
 @Preview
-fun mainForm(){
-    Column(modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally) {
-        SmallTopAppBar(
-            title = {
-                Text("Верхняя панель")
-            },
-            actions = {
-                Button({}){
-                    Text("Открыть")
+fun mainForm() {
+    val vm by remember { mutableStateOf(ViewModel()) }
+    val topAppBarHeight = 55.dp
+    Surface(modifier = Modifier.fillMaxSize()){
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    backgroundColor = MaterialTheme.colorScheme.background,
+                    modifier = Modifier.height(topAppBarHeight),
+                    title = {
+                        Text(vm.filePath.path)
+                    },
+                    actions = {
+                        Button(
+                            onClick = {}
+                        ){
+                            Text("Применить фильтр")
+                        }
+                        Button(
+                            onClick = { vm.showFilePicker = true })
+                        {
+                            Text("Открыть")
+                        }
+                    })
+            }
+        ) {
+            val items = Page.values()
+
+            Row(modifier = Modifier.fillMaxSize()) {
+                NavigationRail (
+                    modifier = Modifier.padding(top = topAppBarHeight)
+                ){
+                    items.forEach{ item ->
+                        NavigationRailItem(
+                            icon = { Icon(item.icon, contentDescription = item.title) },
+                            label = { Text(item.title) },
+                            selected = vm.selectedPage == item,
+                            onClick = { vm.selectedPage = item },
+                            alwaysShowLabel = false
+                        )
+                    }
                 }
-            })
-        AsyncImage(
-            load = {loadImageBitmap(File("B:\\фото с тел\\bluetooth\\1625755330544.jpg"))},
-            painterFor = { remember { BitmapPainter(it) }},
-            contentDescription = "Loaded image"
-        )
-
+                when(vm.selectedPage){
+                    Page.HOME -> {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxSize().padding(top = topAppBarHeight)
+                        ){
+                            AsyncImage(image = vm.image)
+                        }
+                    }
+                    Page.CATALOGS -> {
+                        Box(
+                            modifier = Modifier.padding(top = topAppBarHeight)
+                        ){
+                            Text("Здесь будет просмотр файлов")
+                        }
+                    }
+                }
+            }
+        }
+        FilePicker(vm.showFilePicker, fileExtensions = listOf("jpg", "png")) { file ->
+            vm.showFilePicker = false
+            file?.let {
+                vm.loadImage(File(it.path))
+            }
+        }
     }
-
 }

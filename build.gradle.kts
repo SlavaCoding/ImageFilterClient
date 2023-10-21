@@ -1,3 +1,4 @@
+import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
@@ -24,6 +25,8 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+                implementation("com.darkrockstudios:mpfilepicker:2.1.0")
+                implementation ("org.jetbrains.kotlinx:kotlin-deeplearning-tensorflow:0.5.2")
                 api(compose.runtime)
                 api(compose.ui)
                 api(compose.foundation)
@@ -38,9 +41,13 @@ compose.desktop {
     application {
         mainClass = "MainKt"
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(TargetFormat.Exe)
             packageName = "ImageFilter"
             packageVersion = "1.0.0"
+            windows{
+                packageVersion = "1.0.0"
+                exePackageVersion = "1.0.0"
+            }
         }
     }
 }

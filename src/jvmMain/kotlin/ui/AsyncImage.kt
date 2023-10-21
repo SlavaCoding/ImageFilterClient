@@ -1,44 +1,30 @@
 package ui
 
+import ViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.produceState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.loadImageBitmap
-import kotlinx.coroutines.withContext
-import kotlinx.coroutines.Dispatchers
 import java.io.File
-import java.io.IOException
 
 @Composable
-fun <T> AsyncImage(
-    load: suspend() -> T,
-    painterFor: @Composable (T) -> Painter,
-    contentDescription: String,
+fun AsyncImage(
+    image: ImageBitmap?,
+    contentDescription: String = "NoneDescription",
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Fit
-    ){
-    val image: T? by produceState<T?>(null){
-        value = withContext(Dispatchers.IO){
-            try {
-                load()
-            } catch (e: IOException){
-                e.printStackTrace()
-                null
-            }
-        }
-    }
-    if (image != null){
+) {
+    image?.let {
         Image(
-            painter = painterFor(image!!),
+            painter = BitmapPainter(it),
             contentDescription = contentDescription,
             contentScale = contentScale,
             modifier = modifier
         )
     }
 }
-fun loadImageBitmap(file: File): ImageBitmap = file.inputStream().buffered().use { loadImageBitmap(it) }
