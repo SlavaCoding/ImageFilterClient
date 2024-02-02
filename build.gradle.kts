@@ -18,15 +18,18 @@ repositories {
 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
 kotlin {
     jvm {
-        jvmToolchain(11)
+        jvmToolchain(18)
         withJava()
     }
+
     sourceSets {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
                 implementation("com.darkrockstudios:mpfilepicker:2.1.0")
-                implementation ("org.jetbrains.kotlinx:kotlin-deeplearning-tensorflow:0.5.2")
+                implementation("com.squareup.retrofit2:retrofit:2.9.0")
+                implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+                implementation("androidx.compose.material:material-icons-extended:1.6.0")
                 api(compose.runtime)
                 api(compose.ui)
                 api(compose.foundation)
