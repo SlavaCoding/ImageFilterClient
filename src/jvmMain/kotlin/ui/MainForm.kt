@@ -2,14 +2,7 @@ package ui
 
 import MainViewModel
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Surface
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -18,13 +11,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.darkrockstudios.libraries.mpfilepicker.FilePicker
 import enums.Page
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import ui.explorerPart.CatalogViewer
+import ui.imagePart.ImageViewer
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,6 +28,7 @@ fun mainForm() {
     val topAppBarHeight = 55.dp
     Surface(modifier = Modifier.fillMaxSize()){
         Scaffold(
+            snackbarHost = { SnackbarHost(vm.snackbarHostState) },
             topBar = {
                 TopAppBar(
                     backgroundColor = MaterialTheme.colorScheme.background,
@@ -64,15 +57,42 @@ fun mainForm() {
                         }
                     },
                     actions = {
+                        Tooltip("Выбор нейронной сети"){
+                            ModelSelector(
+                                vm = vm,
+                                modifier = Modifier.width(150.dp)
+                            )
+                        }
+                        Tooltip("Если флаг установлен, то нейросеть будет обрабатывать уже улучшенное изображение, а не оригинал") {
+                            Row{
+                                Checkbox(
+                                    checked = vm.toEnhansed,
+                                    onCheckedChange = { vm.toEnhansed = it },
+                                )
+                                Text("Применять\nк копии")
+                                Spacer(Modifier.width(5.dp))
+                            }
+                        }
                         Button(
                             onClick = { vm.showFilePicker = true })
                         {
                             Text("Открыть")
                         }
-                        Button(
-                            onClick = { vm.enhanceImage() })
-                        {
-                            Text("Улучшить")
+                        Tooltip("Применение выбранной нейросети к изображению. " +
+                                "Нажмите на обработанное изображение, чтобы сравнить с оригиналом"){
+                            Button(
+                                onClick = { vm.enhanceImage() })
+                            {
+                                Text("Улучшить")
+                            }
+                        }
+                        Tooltip("Изображение сохраняется в формате png в папке с оригинальным изображением. \n" +
+                                "К имени файла добавляется порядковый номер сохраняемой копии"){
+                            Button(
+                                onClick = { vm.saveImage() })
+                            {
+                                Text("Сохранить")
+                            }
                         }
                     })
             }
@@ -97,7 +117,7 @@ fun mainForm() {
                     Page.HOME -> {
                         ImageViewer(
                             vm = vm,
-                            isLoading = vm.imgLoadProcess,
+                            scaleRange = 0.15f..5f,
                             modifier = Modifier.fillMaxSize().padding(top = topAppBarHeight)
                         )
                     }

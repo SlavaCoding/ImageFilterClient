@@ -1,4 +1,4 @@
-package ui
+package ui.imagePart
 
 import MainViewModel
 import androidx.compose.foundation.horizontalScroll
@@ -8,7 +8,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -16,9 +16,10 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ImageViewer(
     vm: MainViewModel,
-    isLoading: Boolean = false,
+    scaleRange: ClosedFloatingPointRange<Float>,
     modifier: Modifier = Modifier
 ){
+    var imageScale by remember { mutableStateOf(1f) }
     Column (
         verticalArrangement = Arrangement.Bottom,
         modifier = modifier
@@ -32,10 +33,10 @@ fun ImageViewer(
             ImageComparison(
                 originalImage = vm.image,
                 changedImage = vm.enhancedImage,
-                scale = vm.imageScale,
+                scale = imageScale,
                 modifier = Modifier.align(Alignment.Center)
             )
-            if(isLoading){
+            if(vm.imgLoadProcess){
                 CircularProgressIndicator()
             }
         }
@@ -45,13 +46,13 @@ fun ImageViewer(
             modifier = Modifier.align(Alignment.End)
         ) {
             Slider(
-                value = vm.imageScale,
-                valueRange = 0.15f..5f,
-                onValueChange = { vm.imageScale = it},
+                value = imageScale,
+                valueRange = scaleRange,
+                onValueChange = { imageScale = it},
                 modifier = Modifier.width(320.dp)
             )
             Text(
-                text = ((vm.imageScale * 100).toInt()).toString()+"%",
+                text = ((imageScale * 100).toInt()).toString()+"%",
                 modifier = Modifier.width(60.dp)
             )
         }

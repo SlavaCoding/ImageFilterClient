@@ -1,12 +1,14 @@
 package models
 
 import androidx.compose.runtime.MutableState
-import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.runtime.mutableStateOf
 import java.io.File
 
 data class FileItem(
-    var filePath: File,
+    val filePath: File,
     val size: String,
-    var brisque: MutableState<Double?>,
-    var icon: ImageBitmap? = null
+    val width: Int,
+    val height: Int,
+    val brisque: MutableState<Double?> = mutableStateOf(null),
+    val checked: MutableState<Boolean> = mutableStateOf(false)
 )

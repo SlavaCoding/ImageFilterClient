@@ -1,4 +1,4 @@
-package ui
+package ui.imagePart
 
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable

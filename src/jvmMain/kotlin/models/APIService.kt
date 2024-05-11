@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 interface APIService {
     @Multipart
     @POST("/upload/")
-    suspend fun uploadImage(@Part file: MultipartBody.Part, @Query("width") width: Int, @Query("height") height: Int):Response<ResponseBody>
+    suspend fun uploadImage(@Part file: MultipartBody.Part, @Query("width") width: Int, @Query("height") height: Int, @Query("model_name") modelName: String):Response<ResponseBody>
 
     @GET("/brisque/")
     suspend fun brisqueTest(@Query("path") path: String): Double

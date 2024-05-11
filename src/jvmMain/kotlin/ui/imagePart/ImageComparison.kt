@@ -1,4 +1,4 @@
-package ui
+package ui.imagePart
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
@@ -12,6 +12,7 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import ui.imagePart.NullSafetyImage
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
