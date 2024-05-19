@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef76e341-9b0d-4e12-872a-e3f0a7672bed" name="Changes" comment="Explorer and BRISQUE">
-      <change afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/ModelSelector.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/Tooltip.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/explorerPart/CatalogViewer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ef76e341-9b0d-4e12-872a-e3f0a7672bed" name="Changes" comment="Add model selector and repeat enhance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/MainViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/models/APIService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/models/APIService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/models/Explorer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/models/Explorer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/models/FileItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/models/FileItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/CatalogViewer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/FolderCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/explorerPart/FolderCard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/ImageCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/explorerPart/ImageCard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/ImageComparison.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/imagePart/ImageComparison.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/ImageViewer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/imagePart/ImageViewer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/MainForm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/MainForm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/NullSafetyImage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/ui/imagePart/NullSafetyImage.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +103,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3954023",
     "settings.editor.selected.configurable": "editor.preferences.completion",
@@ -278,7 +262,8 @@
       <workItem from="1712830998812" duration="3748000" />
       <workItem from="1713355179057" duration="711000" />
       <workItem from="1713510862070" duration="6506000" />
-      <workItem from="1715245064363" duration="32618000" />
+      <workItem from="1715245064363" duration="33027000" />
+      <workItem from="1715517025080" duration="49000" />
     </task>
     <task id="LOCAL-00001" summary="Theme">
       <created>1697537085594</created>
@@ -309,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706860161712</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add model selector and repeat enhance">
+      <option name="closed" value="true" />
+      <created>1715445120973</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715445120973</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,7 +325,8 @@
     <MESSAGE value="LoadImage" />
     <MESSAGE value="Add_pages" />
     <MESSAGE value="Explorer and BRISQUE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Explorer and BRISQUE" />
+    <MESSAGE value="Add model selector and repeat enhance" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add model selector and repeat enhance" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
